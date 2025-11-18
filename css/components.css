@@ -1,0 +1,806 @@
+/* ======== REUSABLE BUTTONS ======== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 28px;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border-left-color: #0095c7;
+}
+.btn-primary:hover {
+    background-color: #0095c7; /* A slightly darker shade of primary */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 174, 239, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 2px solid var(--light-text);
+    border-left: 4px solid var(--light-text);
+}
+.btn-secondary:hover {
+    background-color: var(--light-text);
+    color: var(--dark-text);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+.btn-dark {
+    background-color: var(--dark-slate);
+    color: var(--light-text);
+    border-left-color: #2d3748;
+}
+.btn-dark:hover {
+    background-color: #2d3748; /* A slightly lighter dark shade */
+    color: var(--light-text);
+    transform: translateY(-3px);
+}
+
+/* ======== HEADER & NAVIGATION ======== */
+.site-header {
+    /* Glassmorphism header: darker using css variable */
+    /* Dark frosted glass for the full header */
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px) saturate(1.04);
+    -webkit-backdrop-filter: blur(12px) saturate(1.04);
+    border-bottom: 3px solid var(--primary-color);
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 28px rgba(3, 7, 18, 0.45);
+    transition: background 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+/* Slightly more opaque when scrolled */
+.site-header.scrolled {
+    background: var(--nav-bg-scrolled);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Navbar is now just a layout row inside the frosted header */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px; /* inner spacing inside header */
+}
+
+@media (max-width: 900px) {
+    .navbar { padding: 0 12px; }
+}
+
+.logo img {
+    max-height: 60px; /* Control logo size */
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    font-weight: 400;
+    font-size: 17px;
+    position: relative;
+    padding-bottom: 5px;
+}
+/* Sleek underline animation */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* NEW: Style for the active link */
+.nav-links a.active-link {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.nav-links a.active-link::after {
+    width: 100%;
+}
+
+.hamburger-menu {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    /* gap: 4px; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 24px;
+    width: 28px;
+    position: relative;
+    overflow: hidden;
+    
+}
+/* NEW: Wrapper for the 3 dots */
+.hamburger-icon-dots {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* 24px */
+    width: 100%; /* 28px */
+    align-items: center;
+}
+
+/* NEW: Style for the 'X' */
+.hamburger-icon-close {
+    display: none; /* HIDDEN BY DEFAULT */
+    color: var(--light-text);
+    font-size: 24px; /* Make it a good size */
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+/* NEW: Styles for the 3 DOTS */
+.hamburger-menu .dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--light-text);
+    border-radius: 50%;
+    /* transition: all 0.28s cubic-bezier(.2,.9,.2,1);
+    position: relative; */
+}
+
+/* ======== HERO SECTION ======== */
+.hero-section {
+    min-height: 100vh;
+    /* UPDATED: Dynamic Gradient Background */
+    background: linear-gradient(-45deg, 
+        var(--secondary-color), 
+        var(--darker-blue),     /* REPLACED primary-color */
+        var(--vibrant-red),     /* ADDED */
+        var(--dark-violet), 
+        var(--vibrant-orange),  /* ADDED */
+        var(--secondary-color)  /* Loop back */
+    );
+    background-size: 600% 600%; /* UPDATED from 400% */
+    animation: gradientBG 20s ease infinite;
+    /* End Updated */
+    
+    position: relative;
+    display: grid;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    /* max-width: 750px; */
+    /* text-align: center; */
+    /* Removed margin: 0; as `container` will handle centering for text block */
+}
+
+/* NEW: Style the new text wrapper */
+.hero-text-content {
+    flex: 1; /* Allow it to take up space */
+    max-width: 650px;
+    text-align: left; /* Change text alignment */
+}
+
+/* NEW: Style the new image wrapper */
+.hero-image {
+    flex: 1;
+    max-width: 450px;
+}
+.hero-image img {
+    width: 100%;
+    height: auto;
+}
+.hero-content h1 {
+    font-size: 3.5rem; 
+    color: var(--light-text);
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
+
+.hero-content p {
+    font-size: 1.25rem; /* 20px */
+    color: var(--light-text);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+.hero-cta-buttons {
+    display: flex;
+    /* justify-content: center; */
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
+
+/* Mobile menu styles */
+@media (max-width: 900px) {
+    .nav-links {
+        position: fixed;
+        top: 72px; /* placed below the site-header */
+        right: 0px;
+        height: calc(100vh - 92px);
+        width: 90%;
+        /* dark frosted glass panel matching the header */
+        background: var(--nav-bg-scrolled);
+        backdrop-filter: blur(12px) saturate(1.03) !important;
+        -webkit-backdrop-filter: blur(12px) saturate(1.03) !important;
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 14px 6px 6px 14px; /* smooth rounded left edge */
+        flex-direction: column;
+        padding: 22px 18px;
+        gap: 18px;
+        transform: translateX(110%);
+        transition: transform 0.35s cubic-bezier(.2,.9,.2,1), opacity 0.25s ease;
+        z-index: 1500;
+        display: flex;
+        align-items: flex-start;
+        box-shadow: 0 12px 40px rgba(2,6,23,0.45);
+        overflow-y: auto;
+        
+    }
+
+    .nav-links.open {
+        transform: translateX(0%);
+        opacity: 1;        
+    }
+
+    .nav-links a {
+        color: var(--light-text);
+        font-size: 18px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+        background: rgba(255,255,255,0.03);
+        color: var(--primary-color);
+        outline: none;
+    }
+
+    /* Show hamburger, hide inline nav spacing */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .navbar {
+        align-items: center;
+    }
+
+    /* Adjust hero for mobile */
+    .hero-section {
+        padding-top: 150px; /* allow space for fixed header */
+        /* padding-bottom: 60px; */
+        min-height: 100vh;
+    }
+
+    /* UPDATE hero-content for mobile */
+    .hero-content {
+        flex-direction: column; /* Stack columns */
+        text-align: center; /* Center text on mobile */
+    }
+
+    .hero-text-content {
+        text-align: center; /* Ensure text wrapper is centered */
+    }
+    .hero-image {
+        max-width: 300px; /* Control image size */
+        margin-top: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem; /* 32px */
+    }
+
+    .hero-content p {
+        font-size: 1rem; /* 16px */
+    }
+
+    .hero-cta-buttons {
+        justify-content: center;
+    }
+    .hero-cta-buttons .btn {
+        width: 75%;
+        max-width: 500px;
+        padding: 12px 18px;
+        justify-content: center;
+        
+    }
+}
+
+
+
+/* ======== 'X' PATTERN OVERLAY ======== */
+.x-overlay-container {
+    position: absolute;
+    inset: 0; /* (Same as top:0, left:0, bottom:0, right:0) */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Above gradient, below content */
+    pointer-events: none; /* Allows clicking through */
+}
+
+.x-overlay-container .x-symbol {
+    position: absolute;
+    font-weight: 700;
+    opacity: 0; /* Start hidden */
+    /* Animation will be applied by JS */
+    animation: shimmer 10s infinite ease-in-out;
+}
+
+
+
+@keyframes shimmer {
+    0%   { opacity: 0; transform: scale(0.8) rotate(0deg); }
+    20%  { opacity: 0.15; } /* Subtle visibility */
+    80%  { opacity: 0.45; }
+    100% { opacity: 0; transform: scale(1.2) rotate(90deg); }
+}
+
+/* NEW: Active state toggle */
+.hamburger-menu.active .hamburger-icon-dots {
+    display: none; /* Hide dots */
+}
+
+.hamburger-menu.active .hamburger-icon-close {
+    display: block; /* Show 'X' */
+    transform: rotate(360deg); /* Optional: Add a simple spin */
+}
+
+/* ======= Glowy Multicolor Blob behind creattie embed ======= */
+.creattie-wrapper {
+    position: relative;
+    display: block;
+    width: 40%; /* matches previous embed width intention */
+    max-width: 560px;
+    margin: 0 auto;
+    z-index: 2;
+    overflow: hidden; /* Prevent blob from causing page overflow/scroll flicker */
+}
+
+.creattie-wrapper creattie-embed {
+    position: relative;
+    z-index: 3; /* above the blob */
+    display: block;
+    margin: 0 auto;
+}
+/* SVG blob removed: keeping wrapper/embedding behavior */
+/* Blob removed: keeping wrapper for layout/centering */
+@media (max-width: 900px) {
+    .creattie-wrapper {
+        width: 100%;
+        max-width: none;
+    }
+    .creattie-wrapper creattie-embed[style] {
+        width: 100% !important; /* respect the wrapper width on small screens */
+        display: block;
+        margin: 0 auto; /* center on mobile */
+    }
+    /* Nothing to style for blob - svg removed */
+}
+
+
+/* ======== ABOUT US SECTION ======== */
+.about-section {
+    position: relative; /* Crucial for layering */
+    overflow: hidden;   /* Hides the scrolling images */
+    padding: var(--section-padding);
+    background-color: var(--dark-slate); 
+}
+
+/* --- Scrolling Background --- */
+.about-scrolling-bg {
+    position: absolute;
+    inset: 0; /* (top, left, bottom, right = 0) */
+    z-index: 1;
+    display: flex;
+    justify-content: space-evenly;
+    /* gap: 10px; */
+    opacity: 0.5; /* Very subtle */
+    filter: none;
+}
+
+.bg-column {
+    display: flex;
+    flex-direction: column;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); */
+    transition: box-shadow 0.5s ease-in-out;
+    margin: 0 3px;
+    height: max-content;
+}
+/* NEW: Unique glow for each column via JS */
+/* Move glow from column container to the child images for a cleaner effect */
+.bg-column img { transition: box-shadow 0.35s ease, transform 0.25s ease; }
+.bg-column.glow-primary img { box-shadow: 0 8px 30px rgba(0, 174, 239, 0.90); }
+.bg-column.glow-secondary img { box-shadow: 0 8px 30px rgba(44, 62, 80, 0.70); }
+.bg-column.glow-red img { box-shadow: 0 8px 30px rgba(231, 76, 60, 0.76); }
+.bg-column.glow-orange img { box-shadow: 0 8px 30px rgba(243, 156, 18, 0.72); }
+.bg-column.glow-violet img { box-shadow: 0 8px 30px rgba(74, 20, 140, 0.72); }
+.bg-column.glow-light img { box-shadow: 0 8px 30px rgba(247, 250, 252, 0.99); }
+
+.bg-column img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    margin: 5px;
+    border-radius: 12px;
+}
+
+/* --- Content & Glass Cards --- */
+.about-content {
+    position: relative; /* Sits on top of the background */
+    z-index: 2;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--light-text);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-card-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+/* Reusable Glassmorphism Card */
+.glass-card {
+    background: var(--nav-bg); /* Use the same dark glass as header */
+    backdrop-filter: blur(10px) saturate(1.03);
+    -webkit-backdrop-filter: blur(10px) saturate(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.about-card {
+    flex: 1;
+}
+
+.about-card h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: none; /* Override global h shadow */
+}
+
+.about-card p {
+    color: var(--light-text);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* NEW: Card Image & Hover Effect */
+.card-image-wrapper {
+    margin: 20px 0;
+    position: relative;
+    transform-style: preserve-3d; /* For 3D effect on hover */
+    perspective: 1000px;
+}
+
+.card-image {
+    width: 100%;
+    height: 300px; /* Fixed height for consistency */
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+    transform: translateZ(0); /* Fix for z-index issues */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.about-card:hover .card-image {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.03) translateZ(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .card-image {
+        height: 225px; /* Adjust height for mobile */
+    }
+    
+    .about-card-wrapper {
+        flex-direction: column;
+    }
+
+    .bg-column img {
+        width: 80px;
+        height: 80px;
+    }
+}
+/* ======== IMPACT (STATS) SECTION ======== */
+.impact-section {
+    position: relative; /* For the background image */
+    overflow: hidden;   /* To contain the background image */
+    padding: var(--section-padding);
+    /* NEW: Light multi-color gradient background */
+    background: linear-gradient(135deg, 
+        #f0f4ff 0%,  /* Light Blue */
+        #fff4e6 25%, /* Light Orange */
+        #fff0f0 50%, /* Light Red */
+        #f5f0ff 75%, /* Light Violet */
+        #f0f4f8 100% /* Light Navy/Slate */
+    );
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.15rem;
+    color: var(--secondary-color);
+    max-width: 700px;
+    margin: -30px auto 50px auto; /* Pulls up and adds space below */
+    font-weight: 300;
+}
+
+/* Make title text dark on light background */
+.impact-section .section-title {
+    color: var(--dark-text);
+    text-shadow: none; /* Remove shadow on light bg */
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 2; /* Sits above the planet image */
+}
+
+/* ... rest of the IMPACT (STATS) SECTION CSS ... */
+
+.impact-stat-card {
+    border-radius: 12px;
+    padding: 30px 25px;
+    text-align: center;
+    background-color: var(--background-light); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    
+    /* UPDATED: Smoother transition using a Bezier curve */
+    /* This curve is a 'smooth-out' or 'ease-out-back' effect */
+    transition: 
+        background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        
+    border-top: 5px solid; 
+}
+
+.impact-stat-card:hover {
+    /* The hover styles below will now use the custom transition timing */
+    transform: translateY(-8px); 
+    /* ... rest of the hover styles remain unchanged ... */
+}
+
+/* ... all other dependent styles remain unchanged ... */
+
+/* NEW: Default dark text/icon colors for light cards */
+.stat-icon {
+    font-size: 3rem;
+    /* Color will be set by modifier class */
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-secondary);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--secondary-color); /* Dark number */
+    line-height: 1.2;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--dark-text); /* Dark label */
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+
+/* --- NEW: Card Color Variants (Default State) --- */
+
+.impact-card--blue {
+    /* Water */
+    border-top-color: var(--primary-color);
+}
+.impact-card--blue .stat-icon {
+    color: var(--primary-color);
+}
+
+.impact-card--green {
+    /* Trees */
+    border-top-color: var(--vibrant-green);
+}
+.impact-card--green .stat-icon {
+    color: var(--vibrant-green);
+}
+
+.impact-card--red {
+    /* Plastic */
+    border-top-color: var(--vibrant-red);
+}
+.impact-card--red .stat-icon {
+    color: var(--vibrant-red);
+}
+
+.impact-card--orange {
+    /* Garbage */
+    border-top-color: var(--vibrant-orange);
+}
+.impact-card--orange .stat-icon {
+    color: var(--vibrant-orange);
+}
+
+.impact-card--violet {
+    /* CO2/Air */
+    border-top-color: var(--dark-violet);
+}
+.impact-card--violet .stat-icon {
+    color: var(--dark-violet);
+}
+
+
+/* --- NEW: Card Color Variants (HOVER State) --- */
+
+/* Text/Icon color change helper */
+.impact-stat-card:hover .stat-icon,
+.impact-stat-card:hover .stat-number,
+.impact-stat-card:hover .stat-label {
+    color: var(--light-text);
+}
+
+/* Blue Hover (Water) */
+.impact-card--blue:hover {
+    background-color: var(--darker-blue);
+    border-top-color: var(--darker-blue);
+    box-shadow: 0 10px 25px rgba(0, 79, 176, 0.4);
+}
+
+/* Green Hover (Trees) */
+.impact-card--green:hover {
+    background-color: var(--dark-green);
+    border-top-color: var(--dark-green);
+    box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4); /* Shadow based on vibrant green */
+}
+
+/* Red Hover (Plastic) */
+.impact-card--red:hover {
+    background-color: var(--dark-red);
+    border-top-color: var(--dark-red);
+    box-shadow: 0 10px 25px rgba(153, 45, 34, 0.4);
+}
+
+/* Orange Hover (Garbage) */
+.impact-card--orange:hover {
+    background-color: var(--dark-orange);
+    border-top-color: var(--dark-orange);
+    box-shadow: 0 10px 25px rgba(164, 84, 13, 0.4);
+}
+
+/* Violet Hover (CO2/Air) */
+.impact-card--violet:hover {
+    background-color: #3a0c6c; /* Manual darker violet */
+    border-top-color: #3a0c6c;
+    box-shadow: 0 10px 25px rgba(58, 12, 108, 0.4);
+}
+
+
+/* UPDATED: Planet Asset Styling (Bigger) */
+.impact-bg-planet {
+    position: absolute;
+    bottom: -500px;
+    right: -500px;  
+    width: 90vw; 
+    opacity: 0.25;
+    z-index: 1;
+    pointer-events: none;
+    transform: rotate(15deg);
+    transition: opacity 0.5s ease;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+    .impact-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+    .stat-number {
+        font-size: 2.2rem;
+    }
+    .stat-icon {
+        font-size: 2.5rem;
+    }
+    .impact-bg-planet {
+        /* Adjusted for tablet */
+        width: 90vw;
+        bottom: -40vw; 
+        right: -40vw; 
+        opacity: 0.2;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Force a single column for the grid on mobile */
+    .impact-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .impact-stat-card {
+        padding: 25px 20px;
+    }
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    .impact-bg-planet {
+        /* Corrected positioning for mobile visibility */
+        width: 100vw;
+        bottom: -45vw; 
+        right: -45vw;  
+        opacity: 0.15;
+    }
+}

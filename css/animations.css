@@ -1,0 +1,67 @@
+/* ======== KEYFRAME ANIMATIONS ======== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======== ANIMATION CLASSES ======== */
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0; /* Start hidden */
+}
+
+/* ======== BACKGROUND GRADIENT ANIMATION ======== */
+/* ======== BACKGROUND GRADIENT ANIMATION ======== */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 0%; /* More aggressive movement */
+    }
+    50% {
+        background-position: 0% 100%; /* More aggressive movement */
+    }
+    75% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* ======== SCROLLING BACKGROUND ANIMATIONS ======== */
+
+/* * We animate to -50% because the JS will duplicate 
+ * the images to create a seamless loop.
+*/
+@keyframes scroll-down {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+}
+
+.scroll-slow {
+    animation-name: scroll-down;
+    animation-duration: 80s;
+}
+
+.scroll-medium {
+    animation-name: scroll-down;
+    animation-duration: 50s;
+}
+
+.scroll-fast {
+    animation-name: scroll-down;
+    animation-duration: 30s;
+}
+
+.scroll-xfast {
+    animation-name: scroll-down;
+    animation-duration: 22s; /* slightly faster than scroll-fast */
+}
